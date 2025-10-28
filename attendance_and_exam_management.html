@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Attendance and Exam Management System</title>
+
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -19,9 +20,10 @@
     background-color: #0d1b2a;
   }
 
-  /* Campus background after login */
+  /* ✅ Aerial Campus Background after login */
   body.dashboard-bg {
-    background: url('https://matilitechnical.ac.ke/images/campus-view.jpg') no-repeat center center fixed;
+    background: url('https://educationnews.co.ke/wp-content/uploads/2025/06/tug1qUMWHFOHhISH7TAAOGLHsJZR6WGYcgBXH8sF.jpg') 
+      no-repeat center center fixed;
     background-size: cover;
     overflow: auto;
   }
@@ -148,6 +150,7 @@
 
 </style>
 </head>
+
 <body class="login-bg">
 
 <!-- Particle Canvas (before login) -->
@@ -218,20 +221,17 @@
     </table>
     <button class="btn" onclick="recordExam()">Save Exams</button>
   </div>
-
 </div>
 
 <script>
-// --- Data ---
+// --- Users and Data ---
 let users=[], units=[], attendanceRecords=[], examRecords=[], currentUser=null;
 
-// --- Show Signup ---
+// Signup
 function showSignup(){
   document.getElementById('login-section').style.display='none';
   document.getElementById('signup-section').style.display='block';
 }
-
-// --- Signup ---
 function signup(){
   let u=document.getElementById('signup-username').value;
   let e=document.getElementById('signup-email').value;
@@ -246,7 +246,7 @@ function signup(){
   document.getElementById('login-section').style.display='block';
 }
 
-// --- Login ---
+// Login
 function login(){
   let u=document.getElementById('login-username').value;
   let e=document.getElementById('login-email').value;
@@ -263,7 +263,7 @@ function login(){
   } else { alert('User not found!'); }
 }
 
-// --- Logout ---
+// Logout
 function logout(){
   currentUser=null;
   document.body.className='login-bg';
@@ -271,7 +271,7 @@ function logout(){
   document.getElementById('dashboard-section').style.display='none';
 }
 
-// --- Admin Section ---
+// Admin Panel
 function showAdminContent(section){
   const content=document.getElementById('admin-content');
   content.style.display='block';
@@ -305,7 +305,7 @@ function showAdminContent(section){
   if(section==='units') renderUnitsTable();
 }
 
-// --- Admin Functions ---
+// Admin Functions
 function addStudent(){
   let n=document.getElementById('add-student-name').value;
   let d=document.getElementById('add-student-dept').value;
@@ -352,7 +352,7 @@ function renderResults(){
   });
 }
 
-// --- Teacher Functions ---
+// Teacher Functions
 function showAttendanceForm(){
   if(currentUser.role!=="Teacher") return;
   document.getElementById('attendance-section').style.display='block';
@@ -369,7 +369,6 @@ function markAttendance(){
   const date=new Date().toLocaleDateString();
   checkboxes.forEach(c=>{
     attendanceRecords.push({date:date,student:c.value,status:c.checked?'Present':'Absent',unit:'Unit1'});
-    // Notify parent (simulated)
     console.log(`Notification sent to parent of ${c.value}: ${c.checked?'Present':'Absent'}`);
   });
   renderAttendanceTable();
